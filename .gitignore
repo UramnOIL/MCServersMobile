@@ -1,0 +1,4 @@
+# Project exclude paths
+/.gradle/
+/shared/build/
+/shared/build/intermediates/javac/debug/classes/
