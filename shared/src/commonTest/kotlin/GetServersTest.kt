@@ -1,18 +1,49 @@
-import com.uramnoil.shared.ServerListLoader
+import com.uramnoil.shared.ServerListService
+import com.uramnoil.shared.model.entity.Server
+
 import com.uramnoil.shared.runBlocking
+import com.uramnoil.shared.usecase.GetServersInputPort
+import com.uramnoil.shared.usecase.GetServersOutputPort
+import com.uramnoil.shared.usecase.GetServersUseCase
+import kotlinx.coroutines.*
+import org.kodein.di.*
+import kotlin.coroutines.CoroutineContext
 import kotlin.test.Test
 
-class GetServersTest {
-	val loader = ServerListLoader
+
+class GetServersView : GetServersOutputPort {
+	override fun setServers(servers: List<Server>) {
+		println(servers.joinToString("\n") { it.name })
+	}
+
+	override fun handleError(exception: Throwable) {
+		println(exception.message)
+	}
+}
+
+class GetServersTest : DIAware {
+
+	override val di: DI = DI.invoke {
+		bind<GetServersOutputPort>() with provider { GetServersView() }
+		bind<GetServersInputPort>() with provider { GetServersUseCase(instance()) }
+	}
+
+	private val getServersInputPort: GetServersInputPort by di.instance()
 
 	@Test
-	fun `お試し`() = runBlocking {
+	fun `APIからデータを取得する`() = runBlocking {
 		kotlin.runCatching {
-			loader.loadServerList()
+			ServerListService.fetchServerList()
 		}.onFailure {
 			it.printStackTrace()
 		}.onSuccess {
 			println(it.joinToString("\n") { server -> server.name })
 		}
+	}
+
+	@Test
+	fun `Kodeinが正常に機能してるか確認する`() = runBlocking {
+		getServersInputPort.getServers()
+		delay(10000)
 	}
 }
