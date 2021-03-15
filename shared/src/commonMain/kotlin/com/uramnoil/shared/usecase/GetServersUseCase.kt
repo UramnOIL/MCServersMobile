@@ -5,13 +5,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class GetServersUseCase(private val output: GetServersOutputPort, private val repository: ServerListService) : CoroutineScope, GetServersInputPort {
+class GetServersUseCase(private val output: GetServersOutputPort) : CoroutineScope, GetServersInputPort {
 	override val coroutineContext = Dispatchers.Main
 
 	override fun getServers() {
 		launch {
-			output.setServers(repository.fetchServerList())
+			output.setServers(ServerListService.fetchServerList())
 		}
 	}
-
 }
