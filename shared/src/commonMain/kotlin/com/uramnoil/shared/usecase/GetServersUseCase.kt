@@ -6,7 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class GetServersUseCase(private val output: GetServersOutputPort) : CoroutineScope, GetServersInputPort {
-	override val coroutineContext = Dispatchers.Main
+	override val coroutineContext = Dispatchers.Default
 
 	override fun getServers() {
 		launch {
