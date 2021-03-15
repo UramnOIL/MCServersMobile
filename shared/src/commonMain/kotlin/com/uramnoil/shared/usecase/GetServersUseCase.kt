@@ -10,7 +10,7 @@ class GetServersUseCase(private val output: GetServersOutputPort, private val re
 
 	override fun getServers() {
 		launch {
-			output.setServers(repository.getServerList())
+			output.setServers(repository.fetchServerList())
 		}
 	}
 
