@@ -1,5 +1,7 @@
 package com.uramnoil.shared
 
+import com.uramnoil.shared.model.entity.Server
+import com.uramnoil.shared.model.entity.StatusAndServers
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*

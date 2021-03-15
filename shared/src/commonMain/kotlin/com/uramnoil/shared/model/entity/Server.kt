@@ -1,4 +1,4 @@
-package com.uramnoil.shared
+package com.uramnoil.shared.model.entity
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialName

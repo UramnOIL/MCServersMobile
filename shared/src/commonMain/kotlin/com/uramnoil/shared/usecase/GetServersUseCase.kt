@@ -13,4 +13,5 @@ class GetServersUseCase(private val output: GetServersOutputPort, private val re
 			output.setServers(repository.getServerList())
 		}
 	}
+
 }
