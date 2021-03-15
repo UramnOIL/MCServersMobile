@@ -10,7 +10,9 @@ class GetServersUseCase(private val output: GetServersOutputPort) : CoroutineSco
 
 	override fun getServers() {
 		launch {
-			output.setServers(ServerListService.fetchServerList())
+			runCatching { ServerListService.fetchServerList() }
+				.onSuccess { output.setServers(it) }
+				.onFailure { output.handleError(it) }
 		}
 	}
 }
