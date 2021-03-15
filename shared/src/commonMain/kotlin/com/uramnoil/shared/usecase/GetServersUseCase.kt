@@ -7,11 +7,8 @@ import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class GetServersUseCase : CoroutineScope, GetServersInputPort, KoinComponent {
+class GetServersUseCase(val output: GetServersOutputPort, val repository: ServerRepository) : CoroutineScope, GetServersInputPort {
 	override val coroutineContext = Dispatchers.Main
-
-	val output: GetServersOutputPort by inject()
-	val repository: ServerRepository by inject()
 
 	override fun getServers() {
 		launch {

@@ -4,7 +4,5 @@ import com.uramnoil.shared.Server
 import com.uramnoil.shared.ServerListLoader
 
 interface ServerRepository {
-	suspend fun getServers(): List<Server> {
-		return ServerListLoader.loadServerList()
-	}
+	suspend fun getServers(): List<Server>
 }

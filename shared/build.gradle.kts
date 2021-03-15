@@ -2,9 +2,8 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
 	kotlin("multiplatform")
-	kotlin("plugin.serialization") version "1.4.31"
+	kotlin("plugin.serialization")
 	id("com.android.library")
-	id("kotlin-android-extensions")
 }
 
 group = "com.uramnoil"
@@ -20,26 +19,35 @@ kotlin {
 		}
 	}
 	sourceSets {
+		val kotlinxSerializationVersion: String by project
+		val ktorVersion: String by project
+		val kotlinxCoroutinesVersion: String by project
+		val kodeinVersion: String by project
+
+		repositories {
+			mavenCentral()
+			google()
+			gradlePluginPortal()
+		}
+
 		val commonMain by getting {
 			dependencies {
-				implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
-				implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
-				implementation("io.ktor:ktor-serialization:1.5.2")
-				implementation("io.insert-koin:koin-core:3.0.1-beta-1")
-				implementation("io.ktor:ktor-client-core:1.5.2")
+				implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${kotlinxSerializationVersion}")
+				implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${kotlinxCoroutinesVersion}")
+				implementation("io.ktor:ktor-client-core:${ktorVersion}")
+				implementation("org.kodein.di:kodein-di:${kodeinVersion}")
 			}
 		}
 		val commonTest by getting {
 			dependencies {
 				implementation(kotlin("test-common"))
 				implementation(kotlin("test-annotations-common"))
-				implementation("io.ktor:ktor-client-android:1.5.2")
 			}
 		}
 		val androidMain by getting {
 			dependencies {
 				implementation("com.google.android.material:material:1.3.0")
-				implementation("io.ktor:ktor-client-android:1.5.2")
+				implementation("io.ktor:ktor-client-android:${ktorVersion}")
 			}
 		}
 		val androidTest by getting {
