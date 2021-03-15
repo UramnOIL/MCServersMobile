@@ -7,10 +7,6 @@ import io.ktor.http.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
-fun main() {
-
-}
-
 object ServerListLoader {
 	suspend fun loadServerList(): List<Server> {
 		val response = HttpClient().get<HttpResponse> {
