@@ -7,8 +7,8 @@ import io.ktor.http.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
-object ServerListLoader {
-	suspend fun loadServerList(): List<Server> {
+object ServerListService {
+	suspend fun getServerList(): List<Server> {
 		val response = HttpClient().get<HttpResponse> {
 			url("https://mcservers.jp/api/v1/server/list")
 		}
