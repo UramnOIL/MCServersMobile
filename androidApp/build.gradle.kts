@@ -8,12 +8,15 @@ version = "1.0-SNAPSHOT"
 
 dependencies {
     val kodeinVersion: String by project
+    val kotlinxCoroutinesVersion: String by project
 
     implementation(project(":shared"))
     implementation("com.google.android.material:material:1.3.0")
     implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
-    implementation("org.kodein.di:kodein-jvm:${kodeinVersion}")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${kotlinxCoroutinesVersion}")
+    implementation("org.kodein.di:kodein-di-framework-android-core:${kodeinVersion}")
+    implementation("org.kodein.di:kodein-di-framework-android-x:${kodeinVersion}")
 }
 
 android {
@@ -29,6 +32,10 @@ android {
         getByName("release") {
             isMinifyEnabled = false
         }
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 
     buildFeatures.viewBinding = true
