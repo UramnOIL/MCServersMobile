@@ -2,17 +2,16 @@ import com.uramnoil.shared.ServerListService
 import com.uramnoil.shared.model.entity.Server
 
 import com.uramnoil.shared.runBlocking
-import com.uramnoil.shared.usecase.GetServersInputPort
-import com.uramnoil.shared.usecase.GetServersOutputPort
-import com.uramnoil.shared.usecase.GetServersUseCase
+import com.uramnoil.shared.usecase.getservers.GetServersInputPort
+import com.uramnoil.shared.usecase.getservers.GetServersOutputPort
+import com.uramnoil.shared.usecase.getservers.GetServersUseCase
 import kotlinx.coroutines.*
 import org.kodein.di.*
-import kotlin.coroutines.CoroutineContext
 import kotlin.test.Test
 
 
 class GetServersView : GetServersOutputPort {
-	override fun setServers(servers: List<Server>) {
+	override fun setServers(servers: Set<Server>) {
 		println(servers.joinToString("\n") { it.name })
 	}
 
