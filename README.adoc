@@ -1,0 +1,3 @@
+= MCServersMobile
+
+https://mcservers.jp[MCServers.JP]のサーバーリストをモバイルアプリで表示します。
