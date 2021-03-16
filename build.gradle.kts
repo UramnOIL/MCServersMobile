@@ -1,5 +1,3 @@
-import java.net.URI
-
 buildscript {
     repositories {
         gradlePluginPortal()
@@ -8,7 +6,10 @@ buildscript {
     }
 
     dependencies {
+        val kotlinVersion: String by project
+
         classpath("com.android.tools.build:gradle:4.0.2")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
     }
 }
 
