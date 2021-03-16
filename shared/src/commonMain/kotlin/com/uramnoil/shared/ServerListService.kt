@@ -10,7 +10,7 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
 object ServerListService {
-	suspend fun fetchServerList(): List<Server> {
+	suspend fun fetchServerList(): Set<Server> {
 		val response = HttpClient().get<HttpResponse> {
 			url("https://mcservers.jp/api/v1/server/list")
 		}
