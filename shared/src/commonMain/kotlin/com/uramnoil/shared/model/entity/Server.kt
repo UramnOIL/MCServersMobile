@@ -165,5 +165,5 @@ data class Server(
 @Serializable
 data class StatusAndServers(
 	val status: Int,
-	val servers: List<Server>,
+	val servers: Set<Server>,
 )

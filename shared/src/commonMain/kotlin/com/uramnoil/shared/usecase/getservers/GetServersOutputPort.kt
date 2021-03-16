@@ -1,4 +1,4 @@
-package com.uramnoil.shared.usecase
+package com.uramnoil.shared.usecase.getservers
 
 import com.uramnoil.shared.model.entity.Server
 
