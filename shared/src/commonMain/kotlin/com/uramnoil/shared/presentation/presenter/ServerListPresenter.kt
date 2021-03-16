@@ -1,10 +1,12 @@
 package com.uramnoil.shared.presentation.presenter
 
+import com.uramnoil.shared.usecase.getservers.GetServersOutputPort
 
-interface ServerListPresenter {
+
+interface ServerListPresenter : GetServersOutputPort {
 	val view: ServerListView
 }
 
 interface ServerListView {
-	var presenter: ServerListPresenter?
+	val presenter: ServerListPresenter
 }
