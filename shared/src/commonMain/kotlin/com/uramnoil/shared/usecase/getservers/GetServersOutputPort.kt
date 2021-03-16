@@ -4,5 +4,5 @@ import com.uramnoil.shared.model.entity.Server
 
 interface GetServersOutputPort {
 	fun setServers(servers: Set<Server>)
-	fun handleError(exception: Throwable)
+	fun handleError(throwable: Throwable)
 }
