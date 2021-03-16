@@ -19,5 +19,4 @@ pluginManagement {
 rootProject.name = "MCServersMobile"
 
 
-include(":androidApp")
-include(":shared")
+include(":androidApp", ":shared")
