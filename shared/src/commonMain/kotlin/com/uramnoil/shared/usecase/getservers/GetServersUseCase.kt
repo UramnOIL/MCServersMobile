@@ -1,13 +1,10 @@
 package com.uramnoil.shared.usecase.getservers
 
 import com.uramnoil.shared.ServerListService
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
 
-class GetServersUseCase(private val output: GetServersOutputPort) : CoroutineScope, GetServersInputPort {
-	override val coroutineContext = Dispatchers.Default
+class GetServersUseCase(private val output: GetServersOutputPort, override val coroutineContext: CoroutineContext) : CoroutineScope, GetServersInputPort {
 
 	override fun getServers() {
 		val handler = CoroutineExceptionHandler { _, throwable ->
@@ -15,7 +12,10 @@ class GetServersUseCase(private val output: GetServersOutputPort) : CoroutineSco
 		}
 
 		launch(handler) {
-			output.setServers(ServerListService.fetchServerList())
+			val result = withContext(Dispatchers.Default) {
+				ServerListService.fetchServerList()
+			}
+			output.setServers(result)
 		}
 	}
 }
