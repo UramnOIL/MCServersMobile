@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("kotlin-android")
 }
 
 group = "com.uramnoil"
@@ -17,6 +18,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${kotlinxCoroutinesVersion}")
     implementation("org.kodein.di:kodein-di-framework-android-core:${kodeinVersion}")
     implementation("org.kodein.di:kodein-di-framework-android-x:${kodeinVersion}")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
 }
 
 android {
